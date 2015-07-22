@@ -10,5 +10,7 @@ export HOME=/var/vcap
 
 tar xfv tor/tor-*.tar.gz
 cd tor-*
-./configure --prefix=${BOSH_INSTALL_TARGET}
+./configure \
+  --prefix=${BOSH_INSTALL_TARGET} \
+  --with-libevent-dir /var/vcap/packages/libevent
 make -j${CPUS} && make install
