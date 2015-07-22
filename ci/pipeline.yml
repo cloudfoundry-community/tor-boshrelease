@@ -35,38 +35,38 @@ jobs:
           bosh_username: {{bosh-lite-build-username}}
           bosh_password: {{bosh-lite-build-password}}
           bosh_deployment_name: {{bosh-lite-build-deployment-name}}
-    - task: bosh-run-errand-acceptance-tests
-      config:
-        platform: linux
-        image: {{docker-hub-task-image}}
-        inputs:
-          - {name: create-release-and-deploy, path: .}
-        run:
-          path: ./tor-boshrelease/ci/scripts/acceptance_tests.sh
-          args: []
-        params:
-          bosh_target: {{bosh-lite-build-target}}
-          bosh_username: {{bosh-lite-build-username}}
-          bosh_password: {{bosh-lite-build-password}}
-      on_failure:
-        put: slack-devs
-        params:
-          text: <!here> acceptance tests failed http://ci.starkandwayne.com:8080/pipelines/tor-boshrelease (deploy job)
-          channel: "#ge-rdpg"
-          username: concourse
-          icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
+    # - task: bosh-run-errand-acceptance-tests
+    #   config:
+    #     platform: linux
+    #     image: {{docker-hub-task-image}}
+    #     inputs:
+    #       - {name: create-release-and-deploy, path: .}
+    #     run:
+    #       path: ./tor-boshrelease/ci/scripts/acceptance_tests.sh
+    #       args: []
+    #     params:
+    #       bosh_target: {{bosh-lite-build-target}}
+    #       bosh_username: {{bosh-lite-build-username}}
+    #       bosh_password: {{bosh-lite-build-password}}
+    #   on_failure:
+    #     put: slack-devs
+    #     params:
+    #       text: <!here> acceptance tests failed http://ci.starkandwayne.com:8080/pipelines/tor-boshrelease (deploy job)
+    #       channel: "#ci-tor"
+    #       username: concourse
+    #       icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
     on_failure:
       put: slack-devs
       params:
         text: <!here> deploy job failed http://ci.starkandwayne.com:8080/pipelines/tor-boshrelease
-        channel: "#ge-rdpg"
+        channel: "#ci-tor"
         username: concourse
         icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
     on_success:
       put: slack-devs
       params:
         text: <!here> deploy & tests succeeded
-        channel: "#ge-rdpg"
+        channel: "#ci-tor"
         username: concourse
         icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
 
@@ -137,13 +137,13 @@ jobs:
           path: ./tor-boshrelease/ci/scripts/shipit.sh
           args: []
         params:
-          release_name: "Reliable Distributed PostgreSQL"
+          release_name: "Tor"
           bosh_target: {{bosh-lite-build-target}}
           bosh_username: {{bosh-lite-build-username}}
           bosh_password: {{bosh-lite-build-password}}
           bosh_deployment_name: {{bosh-lite-build-deployment-name}}
-          aws_access_key_id: {{boshrelease-aws-access-key-id}}
-          aws_secret_access_key: {{boshrelease-aws-secret-access-key}}
+          aws_access_key_id: {{pipeline-aws-access-key-id}}
+          aws_secret_access_key: {{pipeline-aws-secret-access-key}}
           promotion_branch: master
     - put: git-tor-boshrelease
       params:
@@ -153,25 +153,25 @@ jobs:
       - put: version
         params: {file: version/number}
       - put: final-release
-        params: {from: create-final-release/tor-boshrelease/releases/rdpg/rdpg-(.*).tgz}
+        params: {from: create-final-release/tor-boshrelease/releases/tor/tor-(.*).tgz}
       - put: github-final-release
         params:
           name: create-final-release/tor-boshrelease/release/name
           tag: create-final-release/tor-boshrelease/release/tag
           body: create-final-release/tor-boshrelease/release/notes.md
-          globs: [create-final-release/tor-boshrelease/releases/rdpg/rdpg-*.tgz]
+          globs: [create-final-release/tor-boshrelease/releases/tor/tor-*.tgz]
     on_failure:
       put: slack-devs
       params:
         text: <!here> shipit job failed http://ci.starkandwayne.com:8080/pipelines/tor-boshrelease
-        channel: "#ge-rdpg"
+        channel: "#ci-tor"
         username: concourse
         icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
     on_success:
       put: slack-devs
       params:
         text_file: create-final-release/tor-boshrelease/release/slack_success_message.txt
-        channel: "#ge-rdpg"
+        channel: "#ci-tor"
         username: concourse
         icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
 
@@ -183,19 +183,19 @@ resources:
     bucket: {{pipeline-aws-bucket}}
     access_key_id: {{pipeline-aws-access-key-id}}
     secret_access_key: {{pipeline-aws-secret-access-key}}
-    initial_version: 0.2.0
+    initial_version: 0.1.0
 
 - name: git-tor-boshrelease
   type: git
   source:
-    uri: git@github.com:starkandwayne/tor-boshrelease.git
+    uri: git@github.com:cloudfoundry-community/tor-boshrelease.git
     branch: master
     private_key: {{github-private-key}}
 
 - name: git-tor-boshrelease-release-changes
   type: git
   source:
-    uri: https://github.com/starkandwayne/tor-boshrelease.git
+    uri: https://github.com/cloudfoundry-community/tor-boshrelease.git
     branch: master
     paths:
       - src/**/*
@@ -203,12 +203,6 @@ resources:
       - packages/**/*
       - config/blobs.yml
       - templates/**/*
-
-- name: git-tor
-  type: git
-  source:
-    uri: https://github.com/starkandwayne/tor.git
-    branch: master
 
 - name: github-final-release
   type: github-release
@@ -220,10 +214,10 @@ resources:
 - name: final-release
   type: s3
   source:
-    bucket: {{boshrelease-aws-bucket}}
-    regexp: rdpg-(.*).tgz
-    access_key_id: {{boshrelease-aws-access-key-id}}
-    secret_access_key: {{boshrelease-aws-secret-access-key}}
+    bucket: {{pipeline-aws-bucket}}
+    regexp: tor-(.*).tgz
+    access_key_id: {{pipeline-aws-access-key-id}}
+    secret_access_key: {{pipeline-aws-secret-access-key}}
 
 - name: slack-devs
   type: slack-notification

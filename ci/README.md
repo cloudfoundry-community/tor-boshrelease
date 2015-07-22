@@ -7,7 +7,7 @@ Setup pipeline in Concourse
 ---------------------------
 
 ```
-fly -t snw c -c pipeline.yml --vars-from credentials.yml tor-boshrelease
+fly -t snw c -c pipeline.yml --vars-from credentials.yml tor-boshrelease --paused=false
 ```
 
 Building/updating the base Docker image for tasks
@@ -21,7 +21,7 @@ All the resources used in the pipeline are shipped as independent Docker images 
 fly -t snw configure \
   -c ci_image/pipeline.yml \
   --vars-from credentials.yml \
-  tor-boshrelease-image
+  tor-boshrelease-image --paused=false
 ```
 
 This will ask your targeted Concourse to pull down this project repository, and build the `ci_image/Dockerfile`, and push it to a Docker image on Docker Hub.
