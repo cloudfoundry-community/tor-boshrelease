@@ -44,11 +44,11 @@ fi
 
 echo Prepare github release information
 set -x
-mkdir -p release
-cp ci/release_notes.md release/notes.md
-echo "${release_name} v${version}" > release/name
-echo "v${version}" > release/tag
-cat > release/slack_success_message.txt <<EOS
+mkdir -p tmp/release_info
+cp ci/release_notes.md tmp/release_info/notes.md
+echo "${release_name} v${version}" > tmp/release_info/name
+echo "v${version}" > tmp/release_info/tag
+cat > tmp/release_info/slack_success_message.txt <<EOS
 <!here> New version v${version} released
 EOS
 

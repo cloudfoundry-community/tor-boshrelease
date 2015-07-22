@@ -156,10 +156,10 @@ jobs:
         params: {from: create-final-release/tor-boshrelease/releases/tor/tor-(.*).tgz}
       - put: github-final-release
         params:
-          name: create-final-release/tor-boshrelease/release/name
-          tag: create-final-release/tor-boshrelease/release/tag
-          body: create-final-release/tor-boshrelease/release/notes.md
-          globs: [create-final-release/tor-boshrelease/releases/tor/tor-*.tgz]
+          name: create-final-release/tor-boshrelease/tmp/release_info/name
+          tag: create-final-release/tor-boshrelease/tmp/release_info/tag
+          body: create-final-release/tor-boshrelease/tmp/release_info/notes.md
+          globs: [create-final-release/tor-boshrelease/tmp/release_info/tor/tor-*.tgz]
     on_failure:
       put: slack-devs
       params:
