@@ -207,7 +207,7 @@ resources:
 - name: github-final-release
   type: github-release
   source:
-    user: starkandwayne
+    user: cloudfoundry-community
     repository: tor-boshrelease
     access_token: {{github-access-token}}
 
