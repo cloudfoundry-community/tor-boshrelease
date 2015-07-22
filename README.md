@@ -1,14 +1,24 @@
-# BOSH Release for tor
+BOSH release to run Tor
+=======================
 
-## Usage
+Background
+----------
+
+### What is Tor?
+
+Tor is free software and an open network that helps you defend against traffic analysis, a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security. Learn more about Tor »
+
+### Why Anonymity Matters
+
+Tor protects you by bouncing your communications around a distributed network of relays run by volunteers all around the world: it prevents somebody watching your Internet connection from learning what sites you visit, and it prevents the sites you visit from learning your physical location.
+
+Usage
+-----
 
 To use this bosh release, first upload it to your bosh:
 
 ```
-bosh target BOSH_HOST
-git clone https://github.com/cloudfoundry-community/tor-boshrelease.git
-cd tor-boshrelease
-bosh upload release releases/tor-1.yml
+bosh upload release https://bosh.io/d/github.com/cloudfoundry-community/tor-boshrelease
 ```
 
 For [bosh-lite](https://github.com/cloudfoundry/bosh-lite), you can quickly create a deployment manifest & deploy a cluster:
@@ -31,7 +41,7 @@ For AWS & Openstack, the default deployment assumes there is a `default` securit
 
 Create a file `my-networking.yml`:
 
-``` yaml
+```yaml
 ---
 networks:
   - name: tor1
@@ -52,25 +62,10 @@ bosh -n deploy
 
 ### Development
 
+-	Pipeline at http://ci.starkandwayne.com:8080/pipelines/tor-boshrelease
+
 As a developer of this release, create new releases and upload them:
 
 ```
 bosh create release --force && bosh -n upload release
 ```
-
-### Final releases
-
-To share final releases:
-
-```
-bosh create release --final
-```
-
-By default the version number will be bumped to the next major number. You can specify alternate versions:
-
-
-```
-bosh create release --final --version 2.1
-```
-
-After the first release you need to contact [Dmitriy Kalinin](mailto://dkalinin@pivotal.io) to request your project is added to https://bosh.io/releases (as mentioned in README above).
