@@ -51,21 +51,21 @@ jobs:
     #   on_failure:
     #     put: slack-devs
     #     params:
-    #       text: <!here> acceptance tests failed http://ci.starkandwayne.com:8080/pipelines/tor-boshrelease (deploy job)
+    #       text: <!here> acceptance tests failed http://ci.starkandwayne.com:8080/pipelines/tor-boshrelease (testflight job)
     #       channel: "#bot-tor"
     #       username: concourse
     #       icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
-    on_failure:
-      put: slack-devs
-      params:
-        text: <!here> deploy job failed http://ci.starkandwayne.com:8080/pipelines/tor-boshrelease
-        channel: "#bot-tor"
-        username: concourse
-        icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
+    # on_failure:
+    #   put: slack-devs
+    #   params:
+    #     text: <!here> testflight job failed http://ci.starkandwayne.com:8080/pipelines/tor-boshrelease
+    #     channel: "#bot-tor"
+    #     username: concourse
+    #     icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
     on_success:
       put: slack-devs
       params:
-        text: <!here> deploy & tests succeeded
+        text: <!here> testflight success!
         channel: "#bot-tor"
         username: concourse
         icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
