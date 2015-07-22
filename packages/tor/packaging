@@ -12,5 +12,5 @@ tar xfv tor/tor-*.tar.gz
 cd tor-*
 ./configure \
   --prefix=${BOSH_INSTALL_TARGET} \
-  --with-libevent-dir /var/vcap/packages/libevent
+  --with-libevent-dir=/var/vcap/packages/libevent
 make -j${CPUS} && make install
