@@ -72,8 +72,11 @@ HashedControlPassword <% hashed_control_password %>
 ## HiddenServicePort x y:z says to redirect requests on port x to the
 ## address y:z.
 
-#HiddenServiceDir @LOCALSTATEDIR@/lib/tor/hidden_service/
-#HiddenServicePort 80 127.0.0.1:80
+<% if_p("tor.hostname") do %>
+HiddenServiceDir /var/vcap/jobs/tor/hidden_service/
+HiddenServicePort 80 127.0.0.1:80
+HiddenServicePort 433 127.0.0.1:433
+<% end %>
 
 #HiddenServiceDir @LOCALSTATEDIR@/lib/tor/other_hidden_service/
 #HiddenServicePort 80 127.0.0.1:80
