@@ -10,3 +10,6 @@ templates:
   data/properties.sh.erb: data/properties.sh
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
+properties:
+  tor.hashed_control_password:
+    description: If you enable the controlport, be sure to enable one of these authentication methods, to prevent attackers from accessing it.
