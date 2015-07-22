@@ -1,0 +1,12 @@
+---
+name: tor
+packages:
+- libevent
+- tor
+templates:
+  bin/tor_ctl: bin/tor_ctl
+  bin/monit_debugger: bin/monit_debugger
+  config/torrc.erb: config/torrc
+  data/properties.sh.erb: data/properties.sh
+  helpers/ctl_setup.sh: helpers/ctl_setup.sh
+  helpers/ctl_utils.sh: helpers/ctl_utils.sh
