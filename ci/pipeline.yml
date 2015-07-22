@@ -76,7 +76,7 @@ jobs:
   - aggregate:
     - get: boshrelease
       resource: git-tor-boshrelease
-      passed: [deploy]
+      passed: [testflight]
       trigger: true
     - get: version
       trigger: false
