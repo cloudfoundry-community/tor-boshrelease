@@ -45,7 +45,8 @@ Log notice file /var/vcap/sys/log/tor/notices.log
 ## Uncomment this to start the process in the background... or use
 ## --runasdaemon 1 on the command line. This is ignored on Windows;
 ## see the FAQ entry if you want Tor to run as an NT service.
-#RunAsDaemon 1
+RunAsDaemon 1
+PidFile /var/vcap/sys/run/tor/tor.pid
 
 ## The directory for keeping all the keys/etc. By default, we store
 ## things in $HOME/.tor on Unix, and in Application Data\tor on Windows.
