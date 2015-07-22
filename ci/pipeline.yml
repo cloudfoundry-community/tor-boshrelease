@@ -6,7 +6,6 @@ groups:
   - shipit
 - name: version
   jobs:
-  - patch
   - minor
   - major
 
@@ -149,7 +148,7 @@ jobs:
           name: create-final-release/tor-boshrelease/tmp/release_info/name
           tag: create-final-release/tor-boshrelease/tmp/release_info/tag
           body: create-final-release/tor-boshrelease/tmp/release_info/notes.md
-          globs: [create-final-release/tor-boshrelease/tmp/release_info/tor/tor-*.tgz]
+          globs: [create-final-release/tor-boshrelease/releases/tor/tor-*.tgz]
     on_failure:
       put: slack-devs
       params:
