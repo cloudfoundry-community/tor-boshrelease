@@ -9,7 +9,7 @@ meta:
     version: latest
 
 jobs:
-  - name: just_install_packages
+  - name: tor
     networks:
       - name: tor1
     persistent_disk: (( meta.persistent_disk ))
