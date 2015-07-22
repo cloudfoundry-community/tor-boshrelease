@@ -1,4 +1,5 @@
 ---
+final_name: tor
 blobstore:
   provider: s3
   options:
