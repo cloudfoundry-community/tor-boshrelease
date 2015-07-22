@@ -3,7 +3,6 @@ FROM concourse/concourse-ci
 
 RUN apt-get update && apt-get install curl wget bzr -y
 
-ADD cf-cli/cf-linux-amd64.tgz /usr/bin/
 ADD http://stedolan.github.io/jq/download/linux64/jq /usr/bin/
 RUN chmod 775 /usr/bin/jq
 
