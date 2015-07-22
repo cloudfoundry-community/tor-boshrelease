@@ -29,7 +29,6 @@ set +e
 _bosh upload release --rebase || echo "Continuing..."
 set -e
 
-echo "running: rdpg-dev manifest warden"
-bosh_deployment_name=${bosh_deployment_name} ./rdpg-dev manifest warden
+./templates/make_manifest warden
 
 _bosh deploy
