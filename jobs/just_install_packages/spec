@@ -1,6 +1,6 @@
 ---
 name: just_install_packages
-packages: [tor]
+packages: [libevent, tor]
 templates:
   ignoreme: ignoreme
 properties: {}
