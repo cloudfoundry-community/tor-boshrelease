@@ -1,5 +1,5 @@
 ---
-tor/tor-browser-linux32-4.5.3_en-US.tar.xz:
-  object_id: 1d1760b6-ae90-4c9c-b302-16b8c2bef6e0
-  sha: 4aef03188642bb78b0623e4781e7e88c6b9c52a5
-  size: 44504412
+tor/tor-0.2.6.10.tar.gz:
+  object_id: 9cdb0228-9cad-4c05-80d3-b880910e1c0e
+  sha: 4bf9689b311efce70db96c88d1f466caa41e0277
+  size: 3587211
