@@ -84,16 +84,6 @@ jobs:
   - put: version
     params: {file: version/number}
 
-- name: patch
-  public: true
-  plan:
-  - aggregate:
-    - get: version
-      trigger: false
-      params: {bump: patch}
-  - put: version
-    params: {file: version/number}
-
 - name: minor
   public: true
   plan:
