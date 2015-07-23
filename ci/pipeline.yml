@@ -38,7 +38,7 @@ jobs:
         put: slack-devs
         params:
           text: <!here> testflight deployment failed http://ci.starkandwayne.com:8080/pipelines/tor-boshrelease
-          channel: "#bot-tor"
+          channel: {{slack-channel}}
           username: concourse
           icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
     # - task: bosh-run-errand-acceptance-tests
@@ -58,14 +58,14 @@ jobs:
     #     put: slack-devs
     #     params:
     #       text: <!here> acceptance tests failed http://ci.starkandwayne.com:8080/pipelines/tor-boshrelease (testflight job)
-    #       channel: "#bot-tor"
+    #       channel: {{slack-channel}}
     #       username: concourse
     #       icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
     on_success:
       put: slack-devs
       params:
         text: <!here> testflight success!
-        channel: "#bot-tor"
+        channel: {{slack-channel}}
         username: concourse
         icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
 
@@ -153,14 +153,14 @@ jobs:
       put: slack-devs
       params:
         text: <!here> shipit job failed http://ci.starkandwayne.com:8080/pipelines/tor-boshrelease
-        channel: "#bot-tor"
+        channel: {{slack-channel}}
         username: concourse
         icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
     on_success:
       put: slack-devs
       params:
         text_file: create-final-release/tor-boshrelease/tmp/release_info/slack_success_message.txt
-        channel: "#bot-tor"
+        channel: {{slack-channel}}
         username: concourse
         icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
 
