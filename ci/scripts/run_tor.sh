@@ -16,6 +16,7 @@ auth:
 EOF
 bosh target ${bosh_target}
 
+mkdir -p tmp
 hostname_yml=tmp/hostname.yml
 cat > ${hostname_yml} << YAML
 jobs:
