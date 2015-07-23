@@ -25,9 +25,9 @@ jobs:
         platform: linux
         image: {{docker-hub-task-image}}
         inputs:
-        - {name: tor-boshrelease}
+        - {name: tor-boshrelease, path: .}
         run:
-          path: ./tor-boshrelease/ci/scripts/create_release_and_deploy.sh
+          path: ./ci/scripts/create_release_and_deploy.sh
           args: []
         params:
           bosh_target: {{bosh-lite-build-target}}
@@ -48,7 +48,7 @@ jobs:
         inputs:
           - {name: create-release-and-deploy, path: .}
         run:
-          path: ./tor-boshrelease/ci/scripts/new_hostname_errand.sh
+          path: ./ci/scripts/new_hostname_errand.sh
           args: []
         params:
           bosh_target: {{bosh-lite-build-target}}
@@ -61,7 +61,7 @@ jobs:
     #     inputs:
     #       - {name: create-release-and-deploy, path: .}
     #     run:
-    #       path: ./tor-boshrelease/ci/scripts/acceptance_tests.sh
+    #       path: ./ci/scripts/acceptance_tests.sh
     #       args: []
     #     params:
     #       bosh_target: {{bosh-lite-build-target}}

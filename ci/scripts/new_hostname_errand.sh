@@ -22,4 +22,4 @@ _bosh() {
 
 set -e
 
-_bosh -d manifests/*.yml run errand new_hostname
+_bosh -d tmp/tor-warden-manifest.yml run errand new_hostname
