@@ -13,9 +13,15 @@ mkdir -p ${service_dir}
 chown vcap:vcap ${service_dir}
 chmod 700 ${service_dir}
 
+service_dir=/var/vcap/sys/run/tor/data
+mkdir -p ${service_dir}
+chown vcap:vcap ${service_dir}
+chmod 700 ${service_dir}
+
 exec chpst -u vcap:vcap tor -f $JOB_DIR/config/torrc
 
 sleep 10
+kill $(cat $PIDFILE)
 
 cd ${service_dir}
 tail -n 200 *

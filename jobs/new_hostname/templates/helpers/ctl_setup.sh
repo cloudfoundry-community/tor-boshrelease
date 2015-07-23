@@ -50,4 +50,6 @@ export TMPDIR=$TMP_DIR
 export C_INCLUDE_PATH=/var/vcap/packages/mysqlclient/include/mysql:/var/vcap/packages/sqlite/include:/var/vcap/packages/libpq/include
 export LIBRARY_PATH=/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib
 
+PIDFILE=$RUN_DIR/$output_label.pid
+
 echo '$PATH' $PATH
