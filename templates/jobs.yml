@@ -23,7 +23,7 @@ jobs:
     instances: 1
     persistent_disk: 0
     resource_pool: small_z1
-    networks: (( merge ))
+    networks: (( jobs.tor.networks ))
 
 networks: (( merge ))
 
