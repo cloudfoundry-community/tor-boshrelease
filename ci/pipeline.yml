@@ -159,7 +159,7 @@ jobs:
     on_success:
       put: slack-devs
       params:
-        text_file: create-final-release/tor-boshrelease/release/slack_success_message.txt
+        text_file: create-final-release/tor-boshrelease/tmp/release_info/slack_success_message.txt
         channel: "#bot-tor"
         username: concourse
         icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
