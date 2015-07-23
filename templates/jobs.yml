@@ -16,6 +16,10 @@ jobs:
     persistent_disk: 0
     resource_pool: small_z1
     networks: (( merge ))
+    properties:
+      tor:
+        hostname: ~
+        private_key: ~
   - name: new_hostname
     lifecycle: errand
     templates:
