@@ -13,7 +13,7 @@ mkdir -p ${service_dir}
 chown vcap:vcap ${service_dir}
 chmod 700 ${service_dir}
 
-exec chpst -u vcap:vcap tor -f $JOB_DIR/config/torrc
+chpst -u vcap:vcap tor -f $JOB_DIR/config/torrc
 
 sleep 10
 kill $(cat $PIDFILE)
