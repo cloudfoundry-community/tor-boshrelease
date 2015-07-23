@@ -37,7 +37,7 @@ jobs:
       on_failure:
         put: slack-devs
         params:
-          text: <!here> testflight deployment failed http://ci.starkandwayne.com:8080/pipelines/tor-boshrelease
+          text: <!here> testflight initial deployment failed http://ci.starkandwayne.com:8080/pipelines/tor-boshrelease
           channel: {{slack-channel}}
           username: concourse
           icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
@@ -54,6 +54,33 @@ jobs:
           bosh_target: {{bosh-lite-build-target}}
           bosh_username: {{bosh-lite-build-username}}
           bosh_password: {{bosh-lite-build-password}}
+      on_failure:
+        put: slack-devs
+        params:
+          text: <!here> testflight new-hostname errand failed http://ci.starkandwayne.com:8080/pipelines/tor-boshrelease
+          channel: {{slack-channel}}
+          username: concourse
+          icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
+    - task: deploy-and-run
+      config:
+        platform: linux
+        image: {{docker-hub-task-image}}
+        inputs:
+        - {name: tor-boshrelease, path: .}
+        run:
+          path: ./ci/scripts/run_tor.sh
+          args: []
+        params:
+          bosh_target: {{bosh-lite-build-target}}
+          bosh_username: {{bosh-lite-build-username}}
+          bosh_password: {{bosh-lite-build-password}}
+      on_failure:
+        put: slack-devs
+        params:
+          text: <!here> testflight deploy & run failed http://ci.starkandwayne.com:8080/pipelines/tor-boshrelease
+          channel: {{slack-channel}}
+          username: concourse
+          icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
     # - task: bosh-run-errand-acceptance-tests
     #   config:
     #     platform: linux
