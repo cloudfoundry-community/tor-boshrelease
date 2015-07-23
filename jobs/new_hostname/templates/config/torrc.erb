@@ -1,7 +1,7 @@
 ## Send all messages of level 'notice' or higher to @LOCALSTATEDIR@/log/tor/notices.log
-Log notice file /var/vcap/sys/log/tor/notices.log
+Log notice file /var/vcap/sys/log/new_hostname/notices.log
 ## Send every possible message to @LOCALSTATEDIR@/log/tor/debug.log
-#Log debug file /var/vcap/sys/log/tor/debug.log
+#Log debug file /var/vcap/sys/log/new_hostname/debug.log
 ## Use the system log instead of Tor's logfiles
 #Log notice syslog
 ## To send all messages to stderr:
@@ -11,11 +11,11 @@ Log notice file /var/vcap/sys/log/tor/notices.log
 ## --runasdaemon 1 on the command line. This is ignored on Windows;
 ## see the FAQ entry if you want Tor to run as an NT service.
 RunAsDaemon 1
-PidFile /var/vcap/sys/run/tor/tor.pid
+PidFile /var/vcap/sys/run/new_hostname/new_hostname.pid
 
 ## The directory for keeping all the keys/etc. By default, we store
 ## things in $HOME/.tor on Unix, and in Application Data\tor on Windows.
-DataDirectory /var/vcap/sys/run/tor/data
+DataDirectory /var/vcap/sys/run/new_hostname/data
 
 ############### This section is just for location-hidden services ###
 
