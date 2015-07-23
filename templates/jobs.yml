@@ -16,6 +16,14 @@ jobs:
     persistent_disk: 0
     resource_pool: small_z1
     networks: (( merge ))
+  - name: tor
+    lifecycle: errand
+    templates:
+    - {name: new_hostname, release: tor}
+    instances: 1
+    persistent_disk: 0
+    resource_pool: small_z1
+    networks: (( merge ))
 
 networks: (( merge ))
 
