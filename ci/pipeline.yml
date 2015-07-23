@@ -41,6 +41,19 @@ jobs:
           channel: {{slack-channel}}
           username: concourse
           icon_url: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
+    - task: new-hostname
+      config:
+        platform: linux
+        image: {{docker-hub-task-image}}
+        inputs:
+          - {name: create-release-and-deploy, path: .}
+        run:
+          path: ./tor-boshrelease/ci/scripts/new_hostname_errand.sh
+          args: []
+        params:
+          bosh_target: {{bosh-lite-build-target}}
+          bosh_username: {{bosh-lite-build-username}}
+          bosh_password: {{bosh-lite-build-password}}
     # - task: bosh-run-errand-acceptance-tests
     #   config:
     #     platform: linux
