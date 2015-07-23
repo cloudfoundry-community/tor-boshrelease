@@ -6,6 +6,7 @@ groups:
   - shipit
 - name: version
   jobs:
+  - patch
   - minor
   - major
 
