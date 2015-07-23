@@ -12,7 +12,7 @@ jobs:
   - name: tor
     templates:
     - {name: tor, release: tor}
-    instances: 1
+    instances: 0
     persistent_disk: 0
     resource_pool: small_z1
     networks: (( merge ))
