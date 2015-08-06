@@ -23,6 +23,13 @@ case $1 in
     chown vcap:vcap ${service_dir}/*
     chmod 600 ${service_dir}/*
 
+    # mkdir -p /var/vcap/sys/run/tor/data/router-stability
+    # mkdir -p /var/vcap/sys/run/tor/data/cached-consensus
+    # mkdir -p /var/vcap/sys/run/tor/data/unverified-consensus
+    # mkdir -p /var/vcap/sys/run/tor/data/unverified-microdesc-consensus
+    # mkdir -p /var/vcap/sys/run/tor/data/cached-descriptors
+    # mkdir -p /var/vcap/sys/run/tor/data/cached-extrainfo
+
     exec chpst -u vcap:vcap tor -f $JOB_DIR/config/torrc \
          >>$LOG_DIR/$JOB_NAME.stdout.log \
          2>>$LOG_DIR/$JOB_NAME.stderr.log
